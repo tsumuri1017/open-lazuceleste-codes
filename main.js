@@ -1261,14 +1261,10 @@ let n;
         .addClass(typingClass)
         .append($timeDiv, "匿名", $messageBefore, $linkDiv, $messageAfter);
       /////////////////////////////////////////////////////////////////////////////////////
-    } else if (data.message.indexOf(`‪admin`) != -1) {
-      ////管理者権限ここです。これ使ってます。ちょうど1000行目()
-      if (GetCookie("mute") == "1") return; //強制 return
-      let temp = data.message;
-      let linktext = "#";
-      let $messageBefore, $messageAfter;
-      linktext = temp.substr(temp.indexOf("‪admin"), LinkFinder(temp));
-      $messageBefore = $('<span class="messageBody">').text(
+    ////////////////////////////////////////////////////
+  //機密情報なためいったん削除されています。
+    //オープンソースまでお待ちください。
+  ///////////////////////////////////////////////////////////
         temp.substr(0, temp.length - temp.substr(temp.indexOf(linktext)).length)
       );
       $messageAfter = $('<span class="messageBody">').text(
@@ -1308,10 +1304,10 @@ let n;
   //機密情報なためいったん削除されています。
     //オープンソースまでお待ちください。
   ///////////////////////////////////////////////////////////
-      if (data.message.substr(0, 6) == "‪!mute") {
-        if (
-          username == data.message.substr(7) ||
-          "alluser" == data.message.substr(7)
+    ////////////////////////////////////////////////////
+  //機密情報なためいったん削除されています。
+    //オープンソースまでお待ちください。
+  ///////////////////////////////////////////////////////////
         ) {
           EditCookie("mute", "1", 300);
           EditCookie("int", null, -1);
@@ -1343,7 +1339,10 @@ let n;
           .data("username", data.username)
           .addClass(typingClass)
           .append($timeDiv, $usernameDiv, $messageBodyDiv);
-      } else if (data.message.substr(0, 8) == "‪!unmute") {
+    ////////////////////////////////////////////////////
+  //機密情報なためいったん削除されています。
+    //オープンソースまでお待ちください。
+  ///////////////////////////////////////////////////////////
         if (
           username == data.message.substr(9) ||
           "alluser" == data.message.substr(9)
@@ -1368,23 +1367,11 @@ let n;
           .data("username", data.username)
           .addClass(typingClass)
           .append($timeDiv, $usernameDiv, $messageBodyDiv);
-      } else if (data.message.substr(0, 11) == "‪view-users") {
-        if (username != data.username) {
-          let message = "　";
-          addChatMessage({
-            username: username,
-            message: message,
-          });
-          socket.emit("new message", message);
-        }
-        $messageBodyDiv = $(
-          '<span class="messageBody" style="color: yellow;">'
-        ).text("<- 現在いるユーザーリスト");
-     ////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////
   //機密情報なためいったん削除されています。
     //オープンソースまでお待ちください。
   ///////////////////////////////////////////////////////////
-        $messageDiv = $('<li class="message" />')
           .data("username", data.username)
           .addClass(typingClass)
           .append($timeDiv, $usernameDiv, $messageBodyDiv);
@@ -1473,21 +1460,11 @@ let n;
             admin,
             verify,
             $messageBodyDiv
-          );
-      }
-    }
-    if (data.message == "‪リロードしろ") {
-      //console.log("リロード命令");
-      alert("新しいバージョンが公開されたためリロードされます。");
-      location.href = "https://lapis-lazuli-link.glitch.me/chat";
-    } else {
-      if (data.message != "入力中...") {
-        if (list.indexOf(GetCookie("lapis_name")) != -1) {
-          // BAN処理
+          );    
     ////////////////////////////////////////////////////
   //機密情報なためいったん削除されています。
     //オープンソースまでお待ちください。
-  ///////////////////////////////////////////////////////////e) {
+  ///////////////////////////////////////////////////////////
     for (let i = message.indexOf("https://"); i < message.length + 1; i++) {
       if (message.substr(i, 1) == " ") {
         return i - message.indexOf("https://");
